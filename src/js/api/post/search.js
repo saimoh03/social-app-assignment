@@ -4,7 +4,7 @@ import { handleResponse, headers } from "../headers";
 export async function searchPost(query, limit = 12, page = 1) {
     try {
         const response = await fetch(
-            `${API_BASE_URL}/social/posts?q=${query}&limit=${limit}&page=${page}&_author=true&_comments=true&_reactions=true`,
+            `${API_BASE_URL}/social/posts/search?q=${query}&limit=${limit}&page=${page}&_author=true&_comments=true&_reactions=true`,
             {
                 method: 'GET',
                 headers: headers()
