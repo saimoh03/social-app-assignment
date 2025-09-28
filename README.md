@@ -1,4 +1,7 @@
-# Social App (Vite + Vanilla JS)
+# Social App (Vite + Vanilla JS) - [Live Preview](https://social-app-assignment.vercel.app/)
+
+* [Live Preview](https://social-app-assignment.vercel.app/)
+
 
 ## Getting Started
 
