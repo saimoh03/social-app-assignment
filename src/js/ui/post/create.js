@@ -26,7 +26,8 @@ export async function onCreatePost(event) {
       showNotification("Post created successfully!", "success");
       window.location.href = '/profile/';
     } else {
-      showNotification("Post created (unexpected response)", "warning");
+      let message = response.errors?.[0]?.message || "Post created (unexpected response)";
+      showNotification(message, "warning");
       window.location.href = '/profile/';
     }
 
@@ -37,6 +38,7 @@ export async function onCreatePost(event) {
 
   } catch (err) {
     console.error("Failed to Add New Post:", err);
-    showNotification("Failed to create post", "error");
+    let message = err.errors?.[0]?.message || "Failed to create post";
+    showNotification(message, "error");
   }
 }

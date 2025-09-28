@@ -12,7 +12,8 @@ export async function renderSinglePost(post, container) {
       <div class="flex items-center mb-4">
         <img src="${post.author?.avatar?.url || '/images/default-avatar.jpg'}"
              alt="${post.author?.avatar?.alt || 'User avatar'}"
-             class="w-12 h-12 rounded-full mr-3">
+             class="w-12 h-12 rounded-full mr-3 cursor-pointer"
+             onclick="window.location.href='/profile/?profile=${post.author?.name}'">
         <div>
           <h3 class="font-semibold">${post.author?.name}</h3>
           <p class="text-gray-500 text-sm">${new Date(post.created).toLocaleDateString()}</p>
@@ -24,21 +25,17 @@ export async function renderSinglePost(post, container) {
           : ""}
       </div>
 
-      <!-- Title & Body -->
       <h2 class="text-2xl font-bold mb-4">${post.title}</h2>
       <p class="mb-4">${post.body}</p>
 
-      <!-- Media -->
       ${post.media?.url ? `<img src="${post.media.url}" class="w-full rounded mb-4"/>` : ""}
 
-      <!-- Tags -->
       <div class="flex flex-wrap gap-2 mb-4">
         ${post.tags?.map(tag =>
           `<span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">#${tag}</span>`
         ).join("")}
       </div>
 
-      <!-- Comments & Reactions -->
       <div class="mt-4 flex justify-between text-gray-500 text-sm">
         <div class="mt-4">
           <h4 class="font-semibold text-sm mb-2">Comments (${post._count?.comments || 0})</h4>
@@ -69,7 +66,6 @@ export async function renderSinglePost(post, container) {
         </div>
       </div>
 
-      <!-- Add Comment -->
       <div class="mt-6">
         <h4 class="font-semibold text-sm mb-2">Add a Comment</h4>
         <form name="commentForm" class="flex flex-col space-y-2">

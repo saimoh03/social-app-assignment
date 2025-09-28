@@ -14,7 +14,6 @@ export async function setPaginationlistener() {
         const { data, meta } = await readPosts(20, 1);
         renderPostFeed(data, "postsContainer");
         pagination.render(meta);
-        // Setup event listeners
     } catch (error) {
         console.error('Error initializing app:', error);
         const message = error.errors[0].message || 'Failed to load posts';
@@ -39,25 +38,22 @@ export function createPagination(containerId, onPageChange) {
         pagination.innerHTML = "";
         if (!meta || meta.pageCount <= 1) return;
 
-        // Prev button
         if (state.previousPage) {
             const prevBtn = document.createElement("button");
             prevBtn.textContent = "Prev";
             prevBtn.className = "px-3 py-1 rounded bg-gray-200 hover:bg-gray-300";
             prevBtn.onclick = async () => {
                 const newMeta = await onPageChange(state.previousPage);
-                render(newMeta); // update pagination internally
+                render(newMeta); 
             };
             pagination.appendChild(prevBtn);
         }
 
-        // Info
         const pageInfo = document.createElement("span");
         pageInfo.textContent = `Page ${state.currentPage} of ${state.pageCount}`;
         pageInfo.className = "px-4 py-1 text-gray-600";
         pagination.appendChild(pageInfo);
 
-        // Next button
         if (state.nextPage) {
             const nextBtn = document.createElement("button");
             nextBtn.textContent = "Next";

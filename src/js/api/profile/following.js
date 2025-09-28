@@ -16,7 +16,6 @@ export async function followUser(username) {
 }
 
 /**
- * Unfollows a user
  * @param {string} username - Username to unfollow
  * @returns {Promise<Object>} Unfollow response
  */

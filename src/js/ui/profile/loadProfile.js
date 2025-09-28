@@ -1,12 +1,18 @@
-import { getCurrentUser } from "../../utilities/currentUser"
+import { getCurrentUser, getCurrentUserWithUpdated } from "../../utilities/currentUser"
 import { normalizePostsResponse } from "../../utilities/utils"
 import { readProfilePosts } from "../../api/profile/postRead";
 import { renderPostFeed } from "../global/renderPost";
 
 let currentUser = null;
 
-export async function loadUserPosts() {
-    currentUser = getCurrentUser();
+export async function loadUserPosts(profile = null) {
+    if (profile) {
+        currentUser = await getCurrentUserWithUpdated(profile);
+        let editProfileBtn = document.getElementById('addNewPostBtn');
+        if (editProfileBtn) editProfileBtn.classList.add('hidden');
+    }else {
+        currentUser = getCurrentUser(profile);
+    }
     const container = document.getElementById('userPostsContainer');
     const loading = document.getElementById('userPostsLoading');
     if (loading) loading.style.display = 'block';

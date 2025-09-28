@@ -33,15 +33,17 @@ export const onUpdatePost = async (event) => {
             showNotification("Post updated successfully!", "success");
             window.location.href = '/profile/';
         } else {
-            showNotification("Unexpected response from server", "warning");
+            let message = response.errors?.[0]?.message || "Unexpected response from server";
+            showNotification(message, "warning");
             window.location.href = '/profile/';
         }
 
-        // Hide modal
+        // hide modal
         document.getElementById("editPostModal").classList.add("hidden");
         form.reset();
     } catch (err) {
         console.error("Failed to update post:", err);
-        showNotification("Failed to update post", "error");
+        let message = err.errors?.[0]?.message || "Failed to update post";
+        showNotification(message, "error");
     }
 };

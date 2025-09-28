@@ -15,11 +15,14 @@ export async function loadPost() {
             renderSinglePost(post, container);
         } else {
             renderSinglePost(post, container);
-            showNotification("Single Post Fetched (unexpected response)", "warning");
+            let message = post.errors?.[0]?.message || "Single Post Fetched (unexpected response)";
+            showNotification(message, "warning");
         }
 
     } catch (err) {
         console.error("Failed to load post:", err);
+        let message = err.errors?.[0]?.message || "Failed to load post";
+        showNotification(message, "error");
         container.innerHTML = `<p class="text-red-500">Failed to load post</p>`;
     }
 }

@@ -46,12 +46,13 @@ export function renderPostCard(post, isProfileView) {
                 
                 ${isOwner && isProfileView? `
                     <div class="flex space-x-2">
-                        <button onclick="onUpdatePost(${post.id})" 
-                                class="bg-yellow-500 text-white px-3 py-1 rounded text-sm">
+                        <button onclick="event.stopPropagation(); onUpdatePost(${post.id})" 
+                                class="bg-yellow-500 cursor-pointer text-white px-3 py-1 rounded text-sm">
                             Edit
                         </button>
-                        <button onclick="onDeletePost(${post.id})" 
-                                class="bg-red-500 text-white px-3 py-1 rounded text-sm">
+
+                        <button onclick="event.stopPropagation(); onDeletePost(${post.id})" 
+                                class="bg-red-500 cursor-pointer text-white px-3 py-1 rounded text-sm">
                             Delete
                         </button>
                     </div>

@@ -20,7 +20,6 @@ export async function readPost(id) {
 }
 
 /**
- * Fetches all posts from the API
  * @param {number} limit - Number of posts to fetch
  * @param {number} page - Page number
  * @returns {Promise<Array>} Array of post objects

@@ -11,13 +11,12 @@ async function initializeApp() {
       const pagination = createPagination("pagination", async (page) => {
           const { data, meta } = await fetchAllPosts(20, page);
           renderPostFeed(data, "postsContainer");
-          return meta; // hand back to pagination so it updates itself
+          return meta;
       });
       
       const { data, meta } = await fetchAllPosts(20, 1);
       renderPostFeed(data, "postsContainer");
       pagination.render(meta);
-      // Setup event listeners
   } catch (error) {
       console.error('Error initializing app:', error);
       const message = error.errors[0].message || 'Failed to load posts';

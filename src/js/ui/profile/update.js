@@ -1,4 +1,4 @@
-import { showNotification } from "../../../../../js/ui";
+import { showNotification } from "../global/notifictaion";
 import { updateProfile } from "../../api/profile/update";
 import { getCurrentUser } from "../../utilities/currentUser";
 import { renderProfileHeader } from "./header";
@@ -12,7 +12,6 @@ export async function onUpdateProfile(event) {
     const avatarValue = document.getElementById('profileAvatarInput')?.value.trim();
     const bannerValue = document.getElementById('profileBannerInput')?.value.trim();
 
-    // Build payload according to API (only include props if provided)
     const updateData = {};
     if (bioValue !== undefined) updateData.bio = bioValue || null;
     if (avatarValue) updateData.avatar = { url: avatarValue, alt: "Updated Avatar" };
@@ -20,19 +19,17 @@ export async function onUpdateProfile(event) {
    
     try {
         const response = await updateProfile(currentUser.name, updateData);
-        // response shape may vary; try to get updated user object
         const updatedUser = (response && response.data) ? response.data : (response || null);
-        console.log(updatedUser);
         
         if (updatedUser) {
-            // save updated user to localStorage (if you store user there)
             localStorage.setItem('user', JSON.stringify(updatedUser));
             currentUser = updatedUser;
             window.location.href = '/profile/';
             showNotification('Profile updated successfully!');
         } else {
             window.location.href = '/profile/';
-            showNotification('Profile updated (response shape unexpected)', 'success');
+            let message = response.errors?.[0]?.message || "Profile updated (response shape unexpected)";
+            showNotification(message, 'success');
         }
 
         // hide modal
@@ -41,6 +38,7 @@ export async function onUpdateProfile(event) {
 
     } catch (err) {
         console.error('Failed to update profile:', err);
-        showNotification('Failed to update profile', 'error');
+        let message = err.errors?.[0]?.message || "Failed to update profile";
+        showNotification(message, 'error');
     }
 }

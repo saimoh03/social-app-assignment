@@ -10,8 +10,10 @@ import { onUpdatePost } from "../../ui/post/update";
 
 authGuard();
 setLogoutListener();
-await renderProfileHeader();
-loadUserPosts();
+const params = new URLSearchParams(window.location.search);
+const profile = params.get("profile");
+await renderProfileHeader(profile);
+loadUserPosts(profile);
 setupEventListeners();
 userPostsHandlesInitialize();
 document.forms.editProfileForm.addEventListener('submit', onUpdateProfile);

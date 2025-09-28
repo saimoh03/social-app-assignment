@@ -15,12 +15,14 @@ export async function onCommentSubmit(event) {
       showNotification("Comment added successfully!", "success");
       window.location.href = `/post/?id=${postId}`;
     } else {
-      showNotification("Comment added (unexpected response)", "warning");
+      let message = response.errors?.[0]?.message || "Comment added (unexpected response)";
+      showNotification(message, "warning");
       window.location.href = `/post/?id=${postId}`;
     }
 
   } catch (err) {
+    let message = err.errors?.[0]?.message || "Failed to add comment";
     console.error("Failed to Add New Comment:", err);
-    showNotification("Failed to add comment", "error");
+    showNotification(message, "error");
   }
 }

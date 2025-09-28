@@ -14,12 +14,14 @@ export const userPostsHandlesInitialize = () => {
                     showNotification("Post deleted successfully!", "success");
                 } else {
                     window.location.href = '/profile/';
-                    showNotification("Post deleted (unexpected response)", "warning");
+                    let message = response.errors?.[0]?.message || "Post deleted (unexpected response)";
+                    showNotification(message, "warning");
                 }
             }
         } catch (error) {
             console.error('Failed to delete post:', err);
-            showNotification('Failed to delete post', 'error');
+            let message = err.errors?.[0]?.message || "Failed to delete post";
+            showNotification(message, 'error');
         }
     }
 
@@ -27,7 +29,8 @@ export const userPostsHandlesInitialize = () => {
         try {
             const post = await readPost(id);
             if (!post) {
-                showNotification("Could not load post details", "error");
+                let message = post.errors?.[0]?.message || "Could not load post details";
+                showNotification(message, "error");
                 return;
             }
             
@@ -44,7 +47,8 @@ export const userPostsHandlesInitialize = () => {
             if (modal) modal.classList.remove("hidden");
         } catch (err) {
             console.error("Failed to load post:", err);
-            showNotification("Failed to load post", "error");
+            let message = err.errors?.[0]?.message || "Failed to load post";
+            showNotification(message, "error");
         }
     };
 

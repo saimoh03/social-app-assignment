@@ -27,7 +27,6 @@ export async function handleResponse(response) {
     return Promise.reject(error);
   }
 
-  // 204 means "No Content", so just return true
   if (response.status === 204) {
     return true;
   }

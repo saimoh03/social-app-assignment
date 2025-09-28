@@ -2,12 +2,11 @@ import { API_AUTH_REGISTER } from "../constants";
 import { handleResponse, headers } from "../headers";
 
 /**
- * Registers a new user
- * @param {string} name - Username
- * @param {string} email - User email (must be @stud.noroff.no)
- * @param {string} password - User password
- * @param {Object} profile - Optional profile data
- * @returns {Promise<Object>} User data
+ * @param {string} name
+ * @param {string} email
+ * @param {string} password
+ * @param {Object} profile
+ * @returns {Promise<Object>}
  */
 export async function registerUser(name, email, password, profile = {}) {
     try {

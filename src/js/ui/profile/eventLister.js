@@ -1,4 +1,5 @@
 export function setupEventListeners() {
+  // Edit profile btn to open modal
   const editBtn = document.getElementById('editProfileBtn');
   if (editBtn) {
     editBtn.addEventListener('click', () => {
@@ -7,7 +8,7 @@ export function setupEventListeners() {
     });
   }
 
-  // Add new Post
+  // Add new Post btn to open modal of post
   const addNewPostBtn = document.getElementById('addNewPostBtn');
   if (addNewPostBtn) {
     addNewPostBtn.addEventListener('click', () => {
@@ -16,7 +17,7 @@ export function setupEventListeners() {
     });
   }
 
-  // Cancel edit
+  // Cancel edit profile modal btn to hide modal
   const cancelBtn = document.getElementById('cancelEditBtn');
   if (cancelBtn) {
     cancelBtn.addEventListener('click', () => {
@@ -25,7 +26,7 @@ export function setupEventListeners() {
     });
   }
 
-  // Cancel edit post
+  // Cancel add post modal btn to hide modal
   const cancelAddPostBtn = document.getElementById('cancelAddPostBtn');
   if (cancelAddPostBtn) {
     cancelAddPostBtn.addEventListener('click', () => {
@@ -34,7 +35,7 @@ export function setupEventListeners() {
     });
   }
 
-  // Cancel Edit post
+  // Cancel edit post modal btn to hide modal
   const cancelEditPostBtn = document.getElementById('cancelEditsPostBtn');
   if (cancelEditPostBtn) {
       cancelEditPostBtn.addEventListener('click', () => {

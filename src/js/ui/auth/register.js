@@ -13,11 +13,9 @@ export async function onRegister(event) {
     const errorDiv = document.getElementById('errorMessage');
     const successDiv = document.getElementById('successMessage');
     
-    // Clear previous messages
     errorDiv.classList.add('hidden');
     successDiv.classList.add('hidden');
     
-    // Validation
     if (!email.endsWith('@stud.noroff.no')) {
         errorDiv.textContent = 'Email must be a @stud.noroff.no address';
         errorDiv.classList.remove('hidden');
@@ -45,7 +43,7 @@ export async function onRegister(event) {
         successDiv.textContent = 'Registration successful! Redirecting to login...';
         successDiv.classList.remove('hidden');
         
-        // Redirect to login page after successful registration
+        // redirect after 1.5s
         setTimeout(() => {
             window.location.href = '/auth/login/';
         }, 1500);
