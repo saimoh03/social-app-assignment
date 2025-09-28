@@ -10,13 +10,42 @@
 </head>
 
 <body>
-  <img src="/images/noroff-logo.png" alt="Noroff Logo" />
+  <nav class="bg-white shadow-lg">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center">
+          <a href="/" class="text-xl font-bold">Home</a>
+        </div>
 
-  <h1>Home</h1>
+        <div class="flex items-center space-x-4">
+          <input type="text" id="searchInput" placeholder="Search posts..." class="border rounded-lg px-3 py-2 w-64">
+          <button id="searchBtn" class="bg-blue-500 text-white px-4 py-2 rounded-lg">
+            Search
+          </button>
+        </div>
 
-  <a href="/profile/">My Profile</a>
-  <a href="/auth/login/">Login</a>
-  <a href="/auth/register/">Register</a>
-  <button>Logout</button>
+        <div class="flex items-center space-x-4">
+          <a href="/profile/" class="text-gray-700 hover:text-blue-500">Profile</a>
+          <button id="logoutBtn" class="bg-red-500 text-white px-4 py-2 rounded-lg">
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="max-w-4xl:xl mx-auto py-8 px-4">
+    <!-- Posts Feed -->
+    <div id="postsContainer" class="flex flex-col items-center">
+      <div class="text-center py-8">
+        <div class="loading-spinner mx-auto"></div>
+        <p class="mt-4 text-gray-500">Loading posts...</p>
+      </div>
+      <!-- Posts will be rendered here -->
+    </div>
+    <div id="pagination" class="flex justify-center space-x-2 mt-6"></div>
+  </div>
 </body>
+
 </html>
