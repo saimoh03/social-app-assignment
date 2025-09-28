@@ -1,15 +1,12 @@
 import { API_BASE_URL } from "../constants";
 import { handleResponse, headers } from "../headers";
 
-export async function updateProfile(username, { avatar, banner }) {
+export async function updateProfile(username, updateData) {
     try {
         const response = await fetch(`${API_BASE_URL}/social/profiles/${username}`, {
             method: 'PUT',
             headers: headers(),
-            body: JSON.stringify({
-                avatar,
-                banner
-            })
+            body: JSON.stringify(updateData)
         });
 
         return await handleResponse(response);

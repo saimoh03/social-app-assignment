@@ -1,1 +1,3 @@
-alert("Single Post Page");
+import { loadPost } from "../../ui/post/read";
+
+loadPost();

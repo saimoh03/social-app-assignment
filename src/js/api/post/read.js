@@ -4,7 +4,7 @@ import { handleResponse, headers } from "../headers";
 export async function readPost(id) {
     try {
         const response = await fetch(
-            `${API_BASE_URL}/social/posts/${id}`,
+            `${API_BASE_URL}/social/posts/${id}?_author=true&_comments=true&_reactions=true`,
             {
                 method: 'GET',
                 headers: headers()

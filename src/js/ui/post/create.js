@@ -24,8 +24,10 @@ export async function onCreatePost(event) {
 
     if (response?.id) {
       showNotification("Post created successfully!", "success");
+      window.location.href = '/profile/';
     } else {
       showNotification("Post created (unexpected response)", "warning");
+      window.location.href = '/profile/';
     }
 
     event.target.reset();

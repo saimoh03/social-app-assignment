@@ -10,8 +10,10 @@ export const userPostsHandlesInitialize = () => {
                 const response = await deletePost(id);
 
                 if (response) {
+                    window.location.href = '/profile/';
                     showNotification("Post deleted successfully!", "success");
                 } else {
+                    window.location.href = '/profile/';
                     showNotification("Post deleted (unexpected response)", "warning");
                 }
             }

@@ -1,7 +1,7 @@
 import { getCurrentUser } from "../../utilities/currentUser";
 
 
-export function renderPostFeed(posts, containerId) {
+export function renderPostFeed(posts, containerId, isProfileView = false) {
     const container = document.getElementById(containerId);
     if (!container) return;
     
@@ -10,15 +10,15 @@ export function renderPostFeed(posts, containerId) {
         return;
     }
     
-    container.innerHTML = posts.map(post => renderPostCard(post)).join('');
+    container.innerHTML = posts.map(post => renderPostCard(post, isProfileView)).join('');
 }
 
-export function renderPostCard(post) {
+export function renderPostCard(post, isProfileView) {
     const user = getCurrentUser();
     const isOwner = user && user.name === post.author?.name;
     
     return `
-        <div class="bg-white rounded-lg shadow-md p-6 mb-4 w-[50%]" mx-auto data-post-id="${post.id}">
+        <div class="bg-white cursor-pointer rounded-lg shadow-md p-6 mb-4 w-[50%]" mx-auto data-post-id="${post.id}" onclick="window.location.href='/post/?id=${post.id}'">
             <div class="flex items-center mb-4">
                 <img src="${post.author?.avatar?.url || '/images/default-avatar.jpg'}" 
                      alt="${post.author?.avatar?.alt || 'User avatar'}"
@@ -44,7 +44,7 @@ export function renderPostCard(post) {
                     ).join('')}
                 </div>
                 
-                ${isOwner ? `
+                ${isOwner && isProfileView? `
                     <div class="flex space-x-2">
                         <button onclick="onUpdatePost(${post.id})" 
                                 class="bg-yellow-500 text-white px-3 py-1 rounded text-sm">

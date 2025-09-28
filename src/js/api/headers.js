@@ -18,8 +18,20 @@ return headers;
 
 export async function handleResponse(response) {
   if (!response.ok) {
-    const error = await response.json();
+    let error;
+    try {
+      error = await response.json();
+    } catch {
+      error = { message: "Unknown error" };
+    }
     return Promise.reject(error);
   }
+
+  // 204 means "No Content", so just return true
+  if (response.status === 204) {
+    return true;
+  }
+
   return response.json();
 }
+

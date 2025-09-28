@@ -1,10 +1,10 @@
 import { API_BASE_URL } from "../constants";
 import { handleResponse, headers } from "../headers";
 
-export async function readProfile(username) {
+export async function readProfilePosts(username) {
     try {
         const response = await fetch(
-            `${API_BASE_URL}/social/profiles/${username}?_following=true&_followers=true`,
+            `${API_BASE_URL}/social/profiles/${username}/posts?_author=true&_comments=true&_reactions=true`,
             {
                 method: 'GET',
                 headers: headers()

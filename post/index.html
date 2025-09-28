@@ -8,6 +8,23 @@
     <script type="module" src="/src/app.js"></script>
   </head>
   <body>
-    <h1>Post Page</h1>
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center">
+          <a href="/" class="text-xl font-bold">Home</a>
+        </div>
+
+        <div class="flex items-center space-x-4">
+          <a href="/" class="text-gray-700 hover:text-blue-500">Feed</a>
+          <a href="/profile/" class="text-gray-700 hover:text-blue-500">Profile</a>
+          <button id="logoutBtn" class="bg-red-500 text-white px-4 py-2 rounded-lg">
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="post-container" class="max-w-3xl mx-auto p-6"></div>
   </body>
 </html>

@@ -1,12 +1,12 @@
-import { getCurrentUser } from "../../utilities/currentUser";
+import { getCurrentUserWithUpdated } from "../../utilities/currentUser";
 
 let currentUser = null;
 let userStats = { posts: 0, followers: 0, following: 0 };
 
-export function renderProfileHeader() {
+export async function renderProfileHeader() {
 
-    currentUser = getCurrentUser();
-
+    currentUser = await getCurrentUserWithUpdated();
+    
     const bannerWrapper = document.getElementById('profileBannerWrapper');
     bannerWrapper.innerHTML = '';
     if (currentUser.banner?.url) {
@@ -22,7 +22,7 @@ export function renderProfileHeader() {
     if (!editBtn) {
         editBtn = document.createElement('button');
         editBtn.id = 'editProfileBtn';
-        editBtn.className = 'absolute top-4 right-4 bg-white bg-opacity-20 px-4 py-2 rounded-lg backdrop-blur-sm';
+        editBtn.className = 'absolute top-4 right-4 bg-amber-100/50 px-4 py-2 rounded-lg backdrop-blur-sm';
         editBtn.textContent = 'Edit Profile';
         bannerWrapper.appendChild(editBtn);
     }

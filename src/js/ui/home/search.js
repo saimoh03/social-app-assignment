@@ -16,8 +16,6 @@ export async function setSearchListener() {
 }
 
 async function handleSearch() {
-    console.log("search");
-    
     const query = document.getElementById('searchInput').value.trim();
 
     if (!query) {

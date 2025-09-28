@@ -31,8 +31,10 @@ export const onUpdatePost = async (event) => {
 
         if (response) {
             showNotification("Post updated successfully!", "success");
+            window.location.href = '/profile/';
         } else {
             showNotification("Unexpected response from server", "warning");
+            window.location.href = '/profile/';
         }
 
         // Hide modal

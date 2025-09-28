@@ -10,7 +10,7 @@ import { onUpdatePost } from "../../ui/post/update";
 
 authGuard();
 setLogoutListener();
-renderProfileHeader();
+await renderProfileHeader();
 loadUserPosts();
 setupEventListeners();
 userPostsHandlesInitialize();
