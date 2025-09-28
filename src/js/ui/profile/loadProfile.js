@@ -1,6 +1,7 @@
 import { getCurrentUser } from "../../utilities/currentUser"
 import { normalizePostsResponse } from "../../utilities/utils"
 import { readProfile } from "../../api/profile/read";
+import { renderPostFeed } from "../global/renderPost";
 
 let currentUser = null;
 
@@ -14,10 +15,8 @@ export async function loadUserPosts() {
         const res = await readProfile(currentUser.name);
         
         const posts = normalizePostsResponse(res);
-        console.log(posts);
-        // replace content
         if (container) {
-            container.innerHTML = ''; // clear loading
+            container.innerHTML = '';
             if (!posts.length) {
                 container.innerHTML = `<p class="text-center text-gray-500">No posts found.</p>`;
             } else {

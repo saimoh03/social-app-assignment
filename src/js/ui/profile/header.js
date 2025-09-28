@@ -8,7 +8,7 @@ export function renderProfileHeader() {
     currentUser = getCurrentUser();
 
     const bannerWrapper = document.getElementById('profileBannerWrapper');
-    bannerWrapper.innerHTML = ''; // clear
+    bannerWrapper.innerHTML = '';
     if (currentUser.banner?.url) {
         const img = document.createElement('img');
         img.src = currentUser.banner.url;

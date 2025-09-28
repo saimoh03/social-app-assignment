@@ -1,4 +1,5 @@
 import { showNotification } from "../../../../../js/ui";
+import { updateProfile } from "../../api/profile/update";
 
 export async function onUpdateProfile(event) {
     event.preventDefault();

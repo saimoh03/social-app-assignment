@@ -20,11 +20,11 @@ export function renderPostCard(post) {
     return `
         <div class="bg-white rounded-lg shadow-md p-6 mb-4 w-[50%]" mx-auto data-post-id="${post.id}">
             <div class="flex items-center mb-4">
-                <img src="${post.author?.avatar?.url || '/default-avatar.png'}" 
+                <img src="${post.author?.avatar?.url || '/images/default-avatar.jpg'}" 
                      alt="${post.author?.avatar?.alt || 'User avatar'}"
                      class="w-10 h-10 rounded-full mr-3">
                 <div>
-                    <h3 class="font-semibold">${post.author?.name || 'Unknown User'}</h3>
+                    <h3 class="font-semibold">${post.author?.name || `${isOwner ? user.name : "Unknown User"}`}</h3>
                     <p class="text-gray-500 text-sm">${new Date(post.created).toLocaleDateString()}</p>
                 </div>
             </div>
@@ -46,11 +46,11 @@ export function renderPostCard(post) {
                 
                 ${isOwner ? `
                     <div class="flex space-x-2">
-                        <button onclick="editPost(${post.id})" 
+                        <button onclick="onUpdatePost(${post.id})" 
                                 class="bg-yellow-500 text-white px-3 py-1 rounded text-sm">
                             Edit
                         </button>
-                        <button onclick="deletePost(${post.id})" 
+                        <button onclick="onDeletePost(${post.id})" 
                                 class="bg-red-500 text-white px-3 py-1 rounded text-sm">
                             Delete
                         </button>
